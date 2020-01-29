@@ -11,7 +11,7 @@
 length_of_array = 8
 
 def myHash1(key):
-    return len(key) % length_of_array
+  return len(key) % length_of_array
 
 # Given dog, this returns the hash 3
 
@@ -28,9 +28,10 @@ def myHash1(key):
 # Okay let's make it better
 import time
 def myHash2(key):
-    output_index = len(key) + time.time()
+  output_index = len(key) + time.time()
 
-    return output_index % length_of_array
+  
+  return output_index % length_of_array
 # Pro:
 # - non-invertible
 # - pretty unique!
@@ -40,9 +41,9 @@ def myHash2(key):
 
 
 def myHash3(key, salt):
-    output_index = (len(key) * salt) % length_of_array
+  output_index = (len(key) * salt) % length_of_array
 
-    return output_index % length_of_array
+  return output_index % length_of_array
 # Pro:
 # - deterministic
 # - non-invertible
