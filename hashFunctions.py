@@ -39,7 +39,8 @@ def myHash2(key):
 
 # Con:
 # - not deterministic!! The time will always be different! acck!
-
+# 
+# print(myHash2('bob'))
 
 def myHash3(key, salt):
   output_index = (len(key) * salt) % length_of_array
@@ -53,6 +54,14 @@ def myHash3(key, salt):
 # Con:
 # - Gotta store the salt somewhere for this to be deterministic
 
+salty = 5241
+
+# this shit not coming out that unique
+# dog, dad, Tim
+# need to check how it was done in lecture
+print(myHash3('dog', salty))
+print(myHash3('bob', salty))
+print(myHash3('tim', salty))
 
 # Okay, I also typed out djb2 during class, but it's a stretch goal!
 # So I have removed it. However it's quite simple
