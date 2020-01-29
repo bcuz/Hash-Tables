@@ -11,6 +11,8 @@
 length_of_array = 8
 
 def myHash1(key):
+  # modulo shit is a trick to stay within the bounds
+  # of the array
   return len(key) % length_of_array
 
 # Given dog, this returns the hash 3
@@ -29,7 +31,6 @@ def myHash1(key):
 import time
 def myHash2(key):
   output_index = len(key) + time.time()
-
   
   return output_index % length_of_array
 # Pro:
