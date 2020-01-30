@@ -102,19 +102,20 @@ class HashTable:
     '''
     self.capacity = self.capacity * 2
 
-    temp_storage = [None] * self.size
+    temp_storage = [None] * self.capacity
 
     # unshit this if i have time later
-    for idx in range(self.size // 2):
+    for idx in range(self.capacity // 2):
       temp_storage[idx] = self.storage[idx]
 
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  ht = HashTable(5)
+  ht = HashTable(2)
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
+  ht.insert('ada', 12)
 
   print(ht.storage)
 
