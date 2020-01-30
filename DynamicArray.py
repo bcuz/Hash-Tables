@@ -37,7 +37,13 @@ class DynamicArray:
     temp_storage = [None] * self.size
 
     # copy everything into the new array
-    for idx in range(self.size / 2): # can also use self.count
+    for idx in range(self.size // 2): # can also use self.count
       temp_storage[idx] = self.storage[idx]
 
     self.storage = temp_storage
+
+arr = DynamicArray(2)
+arr.append(1)
+arr.append(1)
+arr.append(1)
+print(arr.storage)
