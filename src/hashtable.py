@@ -88,7 +88,15 @@ class HashTable:
 
     Fill this in.
     '''
-    pass
+    self.capacity = self.capacity * 2
+
+    temp_storage = [None] * self.size
+
+    # unshit this if i have time later
+    for idx in range(self.size // 2):
+      temp_storage[idx] = self.storage[idx]
+
+    self.storage = temp_storage
 
 if __name__ == "__main__":
   ht = HashTable(2)
