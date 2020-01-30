@@ -12,7 +12,8 @@ length_of_array = 8
 
 def myHash1(key):
   # modulo shit is a trick to stay within the bounds
-  # of the array
+  # of the array. reason: need the index to be between 0 and arrLength - 1 (inclusive),
+  # modulo makes it so the result never equals >= arrLength
   return len(key) % length_of_array
 
 # Given dog, this returns the hash 3
