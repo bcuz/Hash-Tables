@@ -25,10 +25,15 @@ class HashTable:
 
     def hash(key):
       total = 0
-      return len(key)
 
-    # return total % self.capacity
+      for char in key:
+        val = ord(char)
+        total += val
 
+      # print(total)
+      return total
+
+    # this line is stupid shit
     return hash(key)
 
   def _hash_djb2(self, key):
@@ -89,6 +94,7 @@ if __name__ == "__main__":
   ht = HashTable(2)
 
   print(ht._hash_mod('bob'))
+  print(ht._hash_mod('boo'))
   # ht.insert("line_1", "Tiny hash table")
   # ht.insert("line_2", "Filled beyond capacity")
   # ht.insert("line_3", "Linked list saves the day!")
