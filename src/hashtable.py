@@ -91,7 +91,12 @@ class HashTable:
 
     Fill this in.
     '''
-    pass
+    hashedIndex = self._hash_mod(key)
+
+    if self.storage[hashedIndex] != None:
+      return self.storage[hashedIndex]
+    else:
+      return None
 
   def resize(self):
     '''
@@ -115,6 +120,7 @@ if __name__ == "__main__":
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
+
   ht.insert('ada', 12)
 
   print(ht.storage)
