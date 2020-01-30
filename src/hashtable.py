@@ -13,6 +13,7 @@ class HashTable:
   that accepts string keys
   '''
   def __init__(self, capacity):
+    self.count = 0
     self.capacity = capacity  # Number of buckets in the hash table
     self.storage = [None] * capacity
 
@@ -52,6 +53,8 @@ class HashTable:
     return self._hash(key) % self.capacity
 
   def insert(self, key, value):
+    # self.capacity = capacity  # Number of buckets in the hash table
+    # self.storage = [None] * capacity
     '''
     Store the value with the given key.
 
@@ -59,7 +62,16 @@ class HashTable:
 
     Fill this in.
     '''
-    pass
+    if self.count == self.capacity:
+      self.resize()
+
+    hashedIndex = self._hash_mod(key)
+
+    if self.storage[hashedIndex] != None:
+      print('Warning: collision')
+
+    self.storage[hashedIndex] = value
+    self.count += 1
 
   def remove(self, key):
     '''
@@ -99,10 +111,15 @@ class HashTable:
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  ht = HashTable(2)
+  ht = HashTable(5)
 
-  print(ht._hash_mod('bob'))
-  print(ht._hash_mod('boo'))
+  ht.insert('bob', 10)
+  ht.insert('joe', 11)
+
+  print(ht.storage)
+
+  # print(ht._hash_mod('bob'))
+  # print(ht._hash_mod('boo'))
   # ht.insert("line_1", "Tiny hash table")
   # ht.insert("line_2", "Filled beyond capacity")
   # ht.insert("line_3", "Linked list saves the day!")
