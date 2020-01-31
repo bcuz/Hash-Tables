@@ -27,13 +27,14 @@ class HashTable:
     def hash(key):
       total = 0
 
+      prime = 5831
       for char in key:
         val = ord(char)
-        total += val
+        total += val * prime
 
       # print(total)
       return total
-
+      
     # this line is stupid shit
     return hash(key)
 
@@ -115,7 +116,7 @@ class HashTable:
 
     # unshit this if i have time later
     for idx in range(self.capacity // 2):
-      # print(self.storage[idx][0])
+      # print('l', self.storage)
 
       hashedIndex = self._hash_mod(self.storage[idx][0])
 
@@ -136,6 +137,7 @@ if __name__ == "__main__":
   ht.insert('joe', 11)
   print(ht.retrieve('bob'))
   print(ht.storage)
+
 
   ht.insert('ada', 12)
   # print(ht.retrieve('bob'))
