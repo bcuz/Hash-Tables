@@ -16,6 +16,7 @@ class HashTable:
     self.count = 0
     self.capacity = capacity  # Number of buckets in the hash table
     self.storage = [None] * capacity
+    self.ll = None
 
   def _hash(self, key):
     '''
@@ -73,6 +74,15 @@ class HashTable:
     self.storage[hashedIndex] = value
     self.count += 1
 
+    if self.ll == None:
+      self.ll = LinkedPair(key, value)
+    else:
+      current = self.ll
+      while current.next is not None:
+        current = current.next
+
+      current.next = LinkedPair(key, value)
+
   def remove(self, key):
     '''
     Remove the value stored with the given key.
@@ -124,6 +134,7 @@ if __name__ == "__main__":
   ht.insert('ada', 12)
 
   print(ht.storage)
+  print(ht.ll.next.value)
 
   # print(ht._hash_mod('bob'))
   # print(ht._hash_mod('boo'))
