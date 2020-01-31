@@ -70,7 +70,7 @@ class HashTable:
     if self.storage[hashedIndex] != None:
       print('Warning: collision')
 
-    self.storage[hashedIndex] = value
+    self.storage[hashedIndex] = (key, value)
     self.count += 1
 
   def remove(self, key):
@@ -120,10 +120,10 @@ if __name__ == "__main__":
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
+  print(ht.retrieve('bob'))
 
   ht.insert('ada', 12)
 
-  print(ht.storage)
 
   # print(ht._hash_mod('bob'))
   # print(ht._hash_mod('boo'))
