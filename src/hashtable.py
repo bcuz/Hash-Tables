@@ -130,14 +130,14 @@ if __name__ == "__main__":
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
+  print(ht._hash_mod('bob'))
 
   ht.insert('ada', 12)
-
   print(ht.storage)
-  print(ht.ll.next.value)
+  print(ht.retrieve('bob'))
 
-  # print(ht._hash_mod('bob'))
-  # print(ht._hash_mod('boo'))
+  # print(ht.ll.next.value)
+
   # ht.insert("line_1", "Tiny hash table")
   # ht.insert("line_2", "Filled beyond capacity")
   # ht.insert("line_3", "Linked list saves the day!")
