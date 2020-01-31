@@ -27,10 +27,10 @@ class HashTable:
 
     def hash(key):
       total = 0
-
+      prime = 5831
       for char in key:
         val = ord(char)
-        total += val
+        total += val * prime
 
       # print(total)
       return total
@@ -53,6 +53,7 @@ class HashTable:
     '''
     return self._hash(key) % self.capacity
 
+  # could be made constant with the LL having a tail.
   def insert(self, key, value):
     # self.capacity = capacity  # Number of buckets in the hash table
     # self.storage = [None] * capacity
@@ -70,6 +71,9 @@ class HashTable:
 
     if self.storage[hashedIndex] != None:
       print('Warning: collision')
+
+    # linkedlist is just for collisions
+    # use a tuple to store key and value, makes it easier to rehash
 
     self.storage[hashedIndex] = value
     self.count += 1
@@ -119,22 +123,48 @@ class HashTable:
 
     temp_storage = [None] * self.capacity
 
+    current = self.ll
+    while current.next is not None:
+      hashedIndex = self._hash_mod(current.key)
+
+      if temp_storage[hashedIndex] != None:
+        print('Warning: collision')
+
+      temp_storage[hashedIndex] = current.value
+      current = current.next
+
     # unshit this if i have time later
-    for idx in range(self.capacity // 2):
-      temp_storage[idx] = self.storage[idx]
+    # for idx in range(self.capacity // 2):
+    #   temp_storage[idx] = self.storage[idx]
 
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  ht = HashTable(2)
+  # ht = HashTable(2)
 
-  ht.insert('bob', 10)
-  ht.insert('joe', 11)
-  print(ht._hash_mod('bob'))
+  # ht.insert('bob', 10)
+  # ht.insert('joe', 11)
+  # print(ht.storage)
+  # print(ht._hash_mod('bob'))
 
-  ht.insert('ada', 12)
+  # ht.insert('ada', 12)
+  # print(ht.storage)
+  # print(ht._hash_mod('bob'))
+
+  ht = HashTable(8)
+
+  ht.insert("key-0", "val-0")
+  ht.insert("key-1", "val-1")
+  ht.insert("key-2", "val-2")
+  ht.insert("key-3", "val-3")
+  ht.insert("key-4", "val-4")
+  ht.insert("key-5", "val-5")
+  ht.insert("key-6", "val-6")
+  ht.insert("key-7", "val-7")
+  ht.insert("key-8", "val-8")
+  ht.insert("key-9", "val-9")
+
   print(ht.storage)
-  print(ht.retrieve('bob'))
 
   # print(ht.ll.next.value)
 
