@@ -68,7 +68,7 @@ class HashTable:
     hashedIndex = self._hash_mod(key)
 
     if self.storage[hashedIndex] != None:
-      print('Warning: collision')
+      print('Warning: collision inserting')
 
     self.storage[hashedIndex] = (key, value)
     self.count += 1
@@ -93,6 +93,8 @@ class HashTable:
     '''
     hashedIndex = self._hash_mod(key)
 
+    # print(hashedIndex)
+
     if self.storage[hashedIndex] != None:
       return self.storage[hashedIndex]
     else:
@@ -105,13 +107,25 @@ class HashTable:
 
     Fill this in.
     '''
+
+    # 
     self.capacity = self.capacity * 2
 
     temp_storage = [None] * self.capacity
 
     # unshit this if i have time later
     for idx in range(self.capacity // 2):
-      temp_storage[idx] = self.storage[idx]
+      # print(self.storage[idx][0])
+
+      hashedIndex = self._hash_mod(self.storage[idx][0])
+
+      if temp_storage[hashedIndex] != None:
+        print('Warning: collision resize')
+
+      temp_storage[hashedIndex] = (self.storage[idx][0], self.storage[idx][1])
+
+      # rehash here.
+      # temp_storage[idx] = self.storage[idx]
 
     self.storage = temp_storage
 
@@ -121,8 +135,12 @@ if __name__ == "__main__":
   ht.insert('bob', 10)
   ht.insert('joe', 11)
   print(ht.retrieve('bob'))
+  print(ht.storage)
 
   ht.insert('ada', 12)
+  # print(ht.retrieve('bob'))
+  print(ht.storage)
+
 
 
   # print(ht._hash_mod('bob'))
