@@ -1,3 +1,5 @@
+# ll collisions, wrapping up
+
 # '''
 # Linked List hash table key/value pair
 # '''
@@ -97,7 +99,7 @@ class HashTable:
     # print(hashedIndex)
 
     if self.storage[hashedIndex] != None:
-      return self.storage[hashedIndex]
+      return self.storage[hashedIndex][1]
     else:
       return None
 
@@ -136,17 +138,15 @@ if __name__ == "__main__":
   ht.insert('bob', 10)
   ht.insert('joe', 11)
   print(ht.retrieve('bob'))
-  print(ht.storage)
+  # print(ht.storage)
 
-
-  ht.insert('ada', 12)
-  # print(ht.retrieve('bob'))
-  print(ht.storage)
-
-
+  # ht.insert('ada', 12)
+  # # print(ht.retrieve('bob'))
+  # print(ht.storage)
 
   # print(ht._hash_mod('bob'))
   # print(ht._hash_mod('boo'))
+
   # ht.insert("line_1", "Tiny hash table")
   # ht.insert("line_2", "Filled beyond capacity")
   # ht.insert("line_3", "Linked list saves the day!")
