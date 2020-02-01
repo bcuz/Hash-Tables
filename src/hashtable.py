@@ -79,8 +79,11 @@ class HashTable:
         self.storage[hashedIndex] = ll
         ll.next = LinkedPair(key, value)
       else:
-        # loop and add to it
-        pass
+        current = self.storage[hashedIndex]
+        while current.next is not None:
+          current = current.next
+
+        current.next = LinkedPair(key, value)
 
     else:
       self.storage[hashedIndex] = (key, value)
@@ -156,7 +159,8 @@ if __name__ == "__main__":
   ht.insert('joe', 11)
   ht.insert('ada', 12)
   # # print(ht.retrieve('bob'))
-  print(ht.storage)
+  print(ht.storage[2].value)
+  print(ht.storage[2].next.value)
   # ht = HashTable(8)
 
   # ht.insert("key-0", "val-0")
