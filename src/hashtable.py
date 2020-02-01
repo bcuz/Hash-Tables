@@ -72,9 +72,11 @@ class HashTable:
 
     if self.storage[hashedIndex] != None:
       print('Warning: collision inserting')
-
-    self.storage[hashedIndex] = (key, value)
-    self.count += 1
+      self.storage[hashedIndex] = (key, value)
+    else:
+      self.storage[hashedIndex] = (key, value)
+      # incrementing too often
+      self.count += 1
 
   def remove(self, key):
     '''
