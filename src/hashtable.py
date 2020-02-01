@@ -84,7 +84,12 @@ class HashTable:
 
     Fill this in.
     '''
-    pass
+    hashedIndex = self._hash_mod(key)
+
+    if self.storage[hashedIndex] != None:
+      self.storage[hashedIndex] = None
+    else:
+      print('key not found')
 
   def retrieve(self, key):
     '''
@@ -95,8 +100,6 @@ class HashTable:
     Fill this in.
     '''
     hashedIndex = self._hash_mod(key)
-
-    # print(hashedIndex)
 
     if self.storage[hashedIndex] != None:
       return self.storage[hashedIndex][1]
@@ -137,8 +140,8 @@ if __name__ == "__main__":
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
-  print(ht.retrieve('bob'))
-  # print(ht.storage)
+  # print(ht.retrieve('bob'))
+  print(ht.storage)
 
   # ht.insert('ada', 12)
   # # print(ht.retrieve('bob'))
