@@ -138,12 +138,28 @@ class HashTable:
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  ht = HashTable(2)
+  # ht = HashTable(2)
 
-  ht.insert('bob', 10)
-  ht.insert('joe', 11)
-  # print(ht.retrieve('bob'))
-  print(ht.storage)
+  # ht.insert('bob', 10)
+  # ht.insert('joe', 11)
+  # # print(ht.retrieve('bob'))
+  # print(ht.storage)
+  # ht = HashTable(8)
+
+  # ht.insert("key-0", "val-0")
+  # ht.insert("key-1", "val-1")
+  # ht.insert("key-2", "val-2")
+  # ht.insert("key-3", "val-3")
+  # ht.insert("key-4", "val-4")
+  # ht.insert("key-5", "val-5")
+  # ht.insert("key-6", "val-6")
+  # ht.insert("key-7", "val-7")
+  # ht.insert("key-8", "val-8")
+  # ht.insert("key-9", "val-9")
+
+  # ht.resize()
+
+  # print(len(ht.storage))
 
   # ht.insert('ada', 12)
   # # print(ht.retrieve('bob'))
