@@ -72,7 +72,16 @@ class HashTable:
 
     if self.storage[hashedIndex] != None:
       print('Warning: collision inserting')
-      self.storage[hashedIndex] = (key, value)
+      if not isinstance(self.storage[hashedIndex], LinkedPair):
+        # create a ll for this area using existing values
+        # then add the new key and val to it, too
+        ll = LinkedPair(self.storage[hashedIndex][0], self.storage[hashedIndex][1])
+        self.storage[hashedIndex] = ll
+        ll.next = LinkedPair(key, value)
+      else:
+        # loop and add to it
+        pass
+
     else:
       self.storage[hashedIndex] = (key, value)
       # incrementing too often
@@ -138,12 +147,16 @@ class HashTable:
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  # ht = HashTable(2)
+  ht = HashTable(2)
 
-  # ht.insert('bob', 10)
-  # ht.insert('joe', 11)
+  # ll = LinkedPair('bob', 3)
+  # print(not isinstance(ll, LinkedPair))
+
+  ht.insert('bob', 10)
+  ht.insert('joe', 11)
+  ht.insert('ada', 12)
   # # print(ht.retrieve('bob'))
-  # print(ht.storage)
+  print(ht.storage)
   # ht = HashTable(8)
 
   # ht.insert("key-0", "val-0")
@@ -161,7 +174,6 @@ if __name__ == "__main__":
 
   # print(len(ht.storage))
 
-  # ht.insert('ada', 12)
   # # print(ht.retrieve('bob'))
   # print(ht.storage)
 
