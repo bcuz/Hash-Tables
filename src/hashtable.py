@@ -170,12 +170,13 @@ class HashTable:
     for idx in range(self.capacity // 2):
       # print('l', self.storage)
 
-      hashedIndex = self._hash_mod(self.storage[idx][0])
+      if self.storage[idx] is not None:
+        hashedIndex = self._hash_mod(self.storage[idx][0])
 
-      if temp_storage[hashedIndex] != None:
-        print('Warning: collision resize')
+        if temp_storage[hashedIndex] != None:
+          print('Warning: collision resize')
 
-      temp_storage[hashedIndex] = (self.storage[idx][0], self.storage[idx][1])
+        temp_storage[hashedIndex] = (self.storage[idx][0], self.storage[idx][1])
 
       # rehash here.
       # temp_storage[idx] = self.storage[idx]
