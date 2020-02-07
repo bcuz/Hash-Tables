@@ -79,11 +79,24 @@ class HashTable:
         self.storage[hashedIndex] = ll
         ll.next = LinkedPair(key, value)
       else:
+        # the ll
         current = self.storage[hashedIndex]
-        while current.next is not None:
+        # this will always go to when it's not none
+        while current is not None:
+          if current.key == key:
+            break
           current = current.next
 
-        current.next = LinkedPair(key, value)
+        # if current.next == None, add new thing to the next property
+
+        if current.next == None and current.key != key:
+          current.next = LinkedPair(key, value)
+        else:
+          print(key, value, 'hi')
+          nextNode = current.next
+          current.key = key
+          current.value = value
+          current.next = nextNode
 
     else:
       self.storage[hashedIndex] = (key, value)
@@ -162,14 +175,21 @@ class HashTable:
 if __name__ == "__main__":
   ht = HashTable(2)
 
-  ll = LinkedPair('bob', 3)
+  # ll = LinkedPair('bob', 3)
   # print(isinstance(ll, LinkedPair))
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
   ht.insert('ada', 12)
-  print(ht.storage)
-  print(ht.retrieve('joe'))
+  ht.insert('ada', 13)
+  # print(ht.storage[2])
+  print(ht.retrieve('ada'))
+
+  current = ht.storage[2]
+  while current is not None:
+    print(current.key, current.value)
+    current = current.next
+
   # ht = HashTable(8)
 
   # ht.insert("key-0", "val-0")
