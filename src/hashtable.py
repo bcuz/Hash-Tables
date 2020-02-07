@@ -1,4 +1,5 @@
-# ll collisions, wrapping up
+# remove and resize aren't adapted to ll stuff, but tests are 
+# passing as they were b4 the ll refactor
 
 # '''
 # Linked List hash table key/value pair
@@ -125,6 +126,8 @@ class HashTable:
     else:
       print('key not found')
 
+# clashes are o(n), otherwise o(1)
+# if i dont consider the loop in the hash func
   def retrieve(self, key):
     '''
     Retrieve the value stored with the given key.
