@@ -56,6 +56,7 @@ class HashTable:
     '''
     return self._hash(key) % self.capacity
 
+# o(n) if there's a clash and something has to be added to an existing ll
   def insert(self, key, value):
     # self.capacity = capacity  # Number of buckets in the hash table
     # self.storage = [None] * capacity
@@ -73,19 +74,21 @@ class HashTable:
 
     if self.storage[hashedIndex] != None:
       print('Collision: creating or adding to LL')
-      if not isinstance(self.storage[hashedIndex], LinkedPair):
+
+      # update value thats not in an ll yet
+      if not isinstance(self.storage[hashedIndex], LinkedPair) and self.storage[hashedIndex][0] == key:
+        self.storage[hashedIndex] = (key, value)  
+
+      # if ll is necessary to resolve a clash but ll doesnt exist yet
+      elif not isinstance(self.storage[hashedIndex], LinkedPair):
         # create a ll for this area using existing values
         # then add the new key and val to it, too
 
-        # if not an overwrite
-        if (self.storage[hashedIndex][0] != key):
-          ll = LinkedPair(self.storage[hashedIndex][0], self.storage[hashedIndex][1])        
-          self.storage[hashedIndex] = ll
-          ll.next = LinkedPair(key, value)
-        else:
-          ll = LinkedPair(key, value)        
-          self.storage[hashedIndex] = ll          
-        
+        ll = LinkedPair(self.storage[hashedIndex][0], self.storage[hashedIndex][1])        
+        self.storage[hashedIndex] = ll
+        ll.next = LinkedPair(key, value)
+
+      # if an ll exists in this location and we need to update a node within it
       else:
         # the ll
         current = self.storage[hashedIndex]
@@ -233,3 +236,6 @@ if __name__ == "__main__":
   # print(ht.retrieve("line_3"))
 
   # print("")
+
+# [x, None, None, x]
+# 
