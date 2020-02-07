@@ -75,9 +75,16 @@ class HashTable:
       if not isinstance(self.storage[hashedIndex], LinkedPair):
         # create a ll for this area using existing values
         # then add the new key and val to it, too
-        ll = LinkedPair(self.storage[hashedIndex][0], self.storage[hashedIndex][1])
-        self.storage[hashedIndex] = ll
-        ll.next = LinkedPair(key, value)
+
+        # if not an overwrite
+        if (self.storage[hashedIndex][0] != key):
+          ll = LinkedPair(self.storage[hashedIndex][0], self.storage[hashedIndex][1])        
+          self.storage[hashedIndex] = ll
+          ll.next = LinkedPair(key, value)
+        else:
+          ll = LinkedPair(key, value)        
+          self.storage[hashedIndex] = ll          
+        
       else:
         # the ll
         current = self.storage[hashedIndex]
@@ -173,26 +180,23 @@ class HashTable:
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  ht = HashTable(2)
+  # ht = HashTable(2)
 
-  # ll = LinkedPair('bob', 3)
-  # print(isinstance(ll, LinkedPair))
+  # # ll = LinkedPair('bob', 3)
+  # # print(isinstance(ll, LinkedPair))
 
-  ht.insert('bob', 10)
-  ht.insert('joe', 11)
-  ht.insert('ada', 12)
-  ht.insert('ada', 13)
-  # print(ht.storage[2])
-  print(ht.retrieve('ada'))
+  # ht.insert('bob', 10)
+  # ht.insert('joe', 11)
+  # ht.insert('ada', 12)
+  # ht.insert('ada', 13)
+  # # print(ht.storage[2])
+  # print(ht.retrieve('ada'))
 
-  current = ht.storage[2]
-  while current is not None:
-    print(current.key, current.value)
-    current = current.next
 
-  # ht = HashTable(8)
+  ht = HashTable(8)
 
-  # ht.insert("key-0", "val-0")
+  ht.insert("key-0", "val-0")
+  ht.insert("key-0", "new")
   # ht.insert("key-1", "val-1")
   # ht.insert("key-2", "val-2")
   # ht.insert("key-3", "val-3")
@@ -202,12 +206,15 @@ if __name__ == "__main__":
   # ht.insert("key-7", "val-7")
   # ht.insert("key-8", "val-8")
   # ht.insert("key-9", "val-9")
+  current = ht.storage[2]
+  while current is not None:
+    print(current.key, current.value)
+    current = current.next
+  # print(ht.retrieve('key-0'))
 
   # ht.resize()
 
-  # print(len(ht.storage))
 
-  # # print(ht.retrieve('bob'))
   # print(ht.storage)
 
   # print(ht._hash_mod('bob'))
