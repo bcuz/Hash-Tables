@@ -71,7 +71,7 @@ class HashTable:
     hashedIndex = self._hash_mod(key)
 
     if self.storage[hashedIndex] != None:
-      print('Warning: collision inserting')
+      print('Collision: creating or adding to LL')
       if not isinstance(self.storage[hashedIndex], LinkedPair):
         # create a ll for this area using existing values
         # then add the new key and val to it, too
@@ -116,8 +116,18 @@ class HashTable:
     hashedIndex = self._hash_mod(key)
 
     if self.storage[hashedIndex] != None:
-      return self.storage[hashedIndex][1]
-    else:
+      # if its a ll i need to loop through it to find the specific key
+
+      if isinstance(self.storage[hashedIndex], LinkedPair):
+        current = self.storage[hashedIndex]
+        while current.key != key:
+          current = current.next
+
+        return current.value
+
+      else:
+        return self.storage[hashedIndex][1]
+    else: 
       return None
 
   def resize(self):
@@ -152,15 +162,14 @@ class HashTable:
 if __name__ == "__main__":
   ht = HashTable(2)
 
-  # ll = LinkedPair('bob', 3)
-  # print(not isinstance(ll, LinkedPair))
+  ll = LinkedPair('bob', 3)
+  # print(isinstance(ll, LinkedPair))
 
   ht.insert('bob', 10)
   ht.insert('joe', 11)
   ht.insert('ada', 12)
-  # # print(ht.retrieve('bob'))
-  print(ht.storage[2].value)
-  print(ht.storage[2].next.value)
+  print(ht.storage)
+  print(ht.retrieve('joe'))
   # ht = HashTable(8)
 
   # ht.insert("key-0", "val-0")
