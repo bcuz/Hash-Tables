@@ -92,7 +92,6 @@ class HashTable:
       else:
         # the ll
         current = self.storage[hashedIndex]
-        # this will always go to when it's not none
         while current is not None:
           if current.key == key:
             break
@@ -110,7 +109,6 @@ class HashTable:
 
     else:
       self.storage[hashedIndex] = (key, value)
-      # incrementing too often
       self.count += 1
 
   def remove(self, key):
