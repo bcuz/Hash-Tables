@@ -100,7 +100,6 @@ class HashTable:
         if current.next == None and current.key != key:
           current.next = LinkedPair(key, value)
         else:
-          print(key, value, 'hi')
           nextNode = current.next
           current.key = key
           current.value = value
@@ -184,37 +183,23 @@ class HashTable:
     self.storage = temp_storage
 
 if __name__ == "__main__":
-  # ht = HashTable(2)
+  ht = HashTable(2)
 
   # # ll = LinkedPair('bob', 3)
   # # print(isinstance(ll, LinkedPair))
 
-  # ht.insert('bob', 10)
-  # ht.insert('joe', 11)
-  # ht.insert('ada', 12)
-  # ht.insert('ada', 13)
-  # # print(ht.storage[2])
+  ht.insert('bob', 10)
+  ht.insert('joe', 11)
+  ht.insert('ada', 12)
+  ht.insert('ada', 13)
+  print(ht.storage)
   # print(ht.retrieve('ada'))
 
-
-  ht = HashTable(8)
-
-  ht.insert("key-0", "val-0")
-  ht.insert("key-0", "new")
-  # ht.insert("key-1", "val-1")
-  # ht.insert("key-2", "val-2")
-  # ht.insert("key-3", "val-3")
-  # ht.insert("key-4", "val-4")
-  # ht.insert("key-5", "val-5")
-  # ht.insert("key-6", "val-6")
-  # ht.insert("key-7", "val-7")
-  # ht.insert("key-8", "val-8")
-  # ht.insert("key-9", "val-9")
+  # see all keys in an index that is an ll
   current = ht.storage[2]
   while current is not None:
     print(current.key, current.value)
     current = current.next
-  # print(ht.retrieve('key-0'))
 
   # ht.resize()
 
